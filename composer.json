@@ -1,17 +1,29 @@
 {
-    "name": "f3ath/points-on-map",
-    "type": "project",
-    "require": {
-        "silex/silex": "^2.0"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "^6.0"
-    },
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Alexey Karapetov",
-            "email": "karapetov@gmail.com"
-        }
-    ]
+  "name": "f3ath/points-on-map",
+  "type": "project",
+  "authors": [
+    {
+      "name": "Alexey Karapetov",
+      "email": "karapetov@gmail.com"
+    }
+  ],
+  "license": "MIT",
+  "require": {
+    "silex/silex": "^2.0",
+    "f3ath/silex-config": "^1",
+    "tobscure/json-api": "^0.3.0",
+    "ramsey/uuid": "^3.5"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^6.0",
+    "guzzlehttp/guzzle": "^6.2",
+    "symfony/psr-http-message-bridge": "^1.0",
+    "zendframework/zend-diactoros": "^1.3",
+    "woohoolabs/yang": "^1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "F3\\Tracker\\": "src/"
+    }
+  }
 }
