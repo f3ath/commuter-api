@@ -27,9 +27,9 @@ class GuzzleFactory
             if ($kernel instanceof TerminableInterface) {
                 $kernel->terminate($symfony_request, $symfony_response);
             }
-            $response = (new DiactorosFactory())->createResponse($symfony_response);
-            $promise = \GuzzleHttp\Promise\promise_for($response);
-            return $promise;
+            return \GuzzleHttp\Promise\promise_for(
+                (new DiactorosFactory())->createResponse($symfony_response)
+            );
         });
 
         return new Client([
