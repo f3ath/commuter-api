@@ -1,5 +1,5 @@
 <?php
-namespace F3\Tracker\Test;
+namespace F3\Commuter\Test;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;

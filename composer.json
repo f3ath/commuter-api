@@ -23,7 +23,7 @@
   },
   "autoload": {
     "psr-4": {
-      "F3\\Tracker\\": "src/"
+      "F3\\Commuter\\": "src/"
     }
   }
 }

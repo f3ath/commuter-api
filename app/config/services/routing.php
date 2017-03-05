@@ -1,5 +1,5 @@
 <?php
-use F3\Tracker\Web\Serializer\SessionSerializer;
+use F3\Commuter\Web\Serializer\SessionSerializer;
 use Ramsey\Uuid\Uuid;
 use Silex\Application;
 use Tobscure\JsonApi\Document;

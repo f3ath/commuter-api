@@ -1,5 +1,5 @@
 <?php
-namespace F3\Tracker\Web;
+namespace F3\Commuter\Web;
 
 use F3\SilexConfig\Config;
 

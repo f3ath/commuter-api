@@ -1,5 +1,5 @@
 <?php
-use F3\Tracker\Web\ApiResponse;
+use F3\Commuter\Web\ApiResponse;
 use Silex\Application;
 
 return function(Application $app) {

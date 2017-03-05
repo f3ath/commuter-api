@@ -1,8 +1,6 @@
 <?php
-namespace F3\Tracker;
+namespace F3\Commuter;
 
-use F3\Tracker\Test\GuzzleFactory;
-use F3\Tracker\Web\Application;
 use GuzzleHttp\Client;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
@@ -22,11 +20,11 @@ class ApplicationTest extends TestCase
 
     protected function createClient(): Client
     {
-        return (new GuzzleFactory())->createClient($this->createApplication());
+        return (new Test\GuzzleFactory())->createClient($this->createApplication());
     }
 
-    private function createApplication(): Application
+    private function createApplication(): Web\Application
     {
-        return new Application();
+        return new Web\Application();
     }
 }

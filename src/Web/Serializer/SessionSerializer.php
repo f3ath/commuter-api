@@ -1,5 +1,5 @@
 <?php
-namespace F3\Tracker\Web\Serializer;
+namespace F3\Commuter\Web\Serializer;
 
 use Tobscure\JsonApi\AbstractSerializer;
 
