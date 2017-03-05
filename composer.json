@@ -11,7 +11,7 @@
   "require": {
     "silex/silex": "^2.0",
     "f3ath/silex-config": "^1",
-    "tobscure/json-api": "^0.3.0",
+    "tobscure/json-api": "^0.4.0",
     "ramsey/uuid": "^3.5"
   },
   "require-dev": {

@@ -14,9 +14,4 @@ class SessionSerializer extends AbstractSerializer
     {
         return $session;
     }
-
-    public function getAttributes($model, array $fields = null)
-    {
-        return ['generated' => time()];
-    }
 }
