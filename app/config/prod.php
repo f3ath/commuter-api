@@ -1,7 +1,4 @@
 <?php
-return [
-    'services' => [
-        'app' => __DIR__ . '/services/app.php',
-        'routing' => __DIR__ . '/services/routing.php',
-    ],
-];
+return array_replace_recursive(require __DIR__ . '/common.php', [
+    'debug' => false,
+]);

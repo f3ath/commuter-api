@@ -1,35 +1,91 @@
 (function () {
     "use strict";
 
-    window['initMap'] = function() {
-        let myLatLng = {lat: -25.363, lng: 131.044};
+    const ApiClient = function (jq) {
+        let _id = null;
 
-        let map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 4,
-            center: myLatLng
+        const _makeLocationRequest = (location, id = null) => (
+            {
+                data: {
+                    type: 'locations',
+                    id: id,
+                    attributes: {
+                        lat: location.lat,
+                        lng: location.lng,
+                    }
+                }
+            }
+        );
+
+        this.init = function (location) {
+            const setId = id => _id = id;
+
+            jq.post({
+                url: '/locations',
+                type: 'POST',
+                contentType: 'application/vnd.api+json',
+                processData: false,
+                dataType: 'json',
+                data: JSON.stringify(_makeLocationRequest(location)),
+                success: data => setId(data.id),
+            });
+        };
+
+        this.getLocations = function (callback) {
+            jq.ajax({
+                url: '/locations',
+                contentType: 'application/vnd.api+json',
+                success: response => callback(
+                    response.data ? response.data.map(d => ({lat: d.attributes.lat, lng: d.attributes.lng})): []
+                )
+            });
+        };
+        
+    };
+
+    window['initMap'] = function () {
+        const SanFrancisco = {lat: 37.7749, lng: -122.4194};
+        const map = new google.maps.Map(
+            document.getElementById('map'),
+            {
+                zoom: 4,
+                center: SanFrancisco
+            }
+        );
+
+        const withLocation = function (callback) {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    pos => callback({lat: pos.coords.latitude, lng: pos.coords.longitude})
+                );
+            } else {
+                console.log('Geolocation not supported');
+            }
+        };
+
+        const api = new ApiClient(jQuery);
+
+        let markers = [];
+        const refreshMarkers = function (locations) {
+            markers.map(m => m.setMap(null));
+            markers = [];
+            locations.map(location => markers.push(new google.maps.Marker({position: location})));
+            markers.map(m => m.setMap(map));
+        };
+
+        withLocation(location => api.init(location));
+
+        withLocation(function (location) {
+            map.setCenter(location);
+            map.setZoom(11);
         });
 
-        const mutate = function(p) {
-            const d_lat = 0.03;
-            const d_lng = -0.05;
-            return {
-                lat: p.lat + Math.random() * d_lat,
-                lng: p.lng + Math.random() * d_lng,
-            };
-        };
-        let markers = [];
+        api.getLocations(refreshMarkers);
         setInterval(
-            function() {
-                markers.map(m => m.setMap(null));
-                markers = [];
-                for (let i = 0; i < 1000; i++) {
-                    markers.push(new google.maps.Marker({
-                        position: mutate(myLatLng)
-                    }))
-                }
-                markers.map(m => m.setMap(map));
+            function () {
+                api.getLocations(refreshMarkers);
             },
-            1000
+            10000
         );
     };
 })();
