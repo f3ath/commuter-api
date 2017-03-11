@@ -17,18 +17,19 @@ class LocationsController
     public function addLocation(Request $request)
     {
         $json = json_decode($request->getContent());
-        $location = [
-            'lat' => $json->data->attributes->lat,
-            'lng' => $json->data->attributes->lng
-        ];
-        $id = $json->data->id;
-        $this->application->set($id, $location);
+        $this->application->set(
+            $json->data->id,
+            [
+                'lat' => $json->data->attributes->lat,
+                'lng' => $json->data->attributes->lng
+            ]
+        );
         return new Response('', Response::HTTP_NO_CONTENT);
     }
 
     public function getCurrentLocations()
     {
-        $response = [
+        return new Response([
             'data' => [
                 'type' => 'current_locations',
                 'id' => (string) time(),
@@ -36,7 +37,6 @@ class LocationsController
                     'locations' => $this->application->getAll()
                 ]
             ]
-        ];
-        return new Response($response);
+        ]);
     }
 }

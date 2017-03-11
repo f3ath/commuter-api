@@ -32,7 +32,7 @@ class WebApplicationTest extends TestCase
             ->method('set')
             ->with('test_key', ['lat' => 1.23, 'lng' => -3.21]);
         $response = $this->web_client->post(
-            '/locations',
+            '/api/locations',
             [
                 'json' => [
                     'data' => [
@@ -58,7 +58,7 @@ class WebApplicationTest extends TestCase
                     ['lat' => 1.23, 'lng' => -3.21],
                 ]
             );
-        $response = $this->web_client->get('/current_locations');
+        $response = $this->web_client->get('/api/current_locations');
         self::assertStatusCode(200, $response);
         $json = json_decode($response->getBody());
         $data = $json->data;
