@@ -2,45 +2,32 @@
     "use strict";
 
     const ApiClient = function (jq) {
-        let _id = null;
-
-        const _makeLocationRequest = (location, id = null) => (
-            {
-                data: {
-                    type: 'locations',
-                    id: id,
-                    attributes: {
-                        lat: location.lat,
-                        lng: location.lng,
-                    }
-                }
-            }
-        );
-
-        this.init = function (location) {
-            const setId = id => _id = id;
-
+        this.sendLocation = function (location) {
             jq.post({
                 url: '/locations',
                 type: 'POST',
                 contentType: 'application/vnd.api+json',
                 processData: false,
                 dataType: 'json',
-                data: JSON.stringify(_makeLocationRequest(location)),
-                success: data => setId(data.id),
+                data: JSON.stringify({
+                    data: {
+                        type: 'locations',
+                        attributes: location,
+                    }
+                }),
             });
         };
 
         this.getLocations = function (callback) {
             jq.ajax({
-                url: '/locations',
+                url: '/current_locations',
                 contentType: 'application/vnd.api+json',
                 success: response => callback(
-                    response.data ? response.data.map(d => ({lat: d.attributes.lat, lng: d.attributes.lng})): []
+                    response.data ? response.data.attributes.locations : []
                 )
             });
         };
-        
+
     };
 
     window['initMap'] = function () {
@@ -59,33 +46,36 @@
                     pos => callback({lat: pos.coords.latitude, lng: pos.coords.longitude})
                 );
             } else {
-                console.log('Geolocation not supported');
+                console.log('Oh shi... Geolocation is not supported');
             }
         };
 
         const api = new ApiClient(jQuery);
 
-        let markers = [];
-        const refreshMarkers = function (locations) {
-            markers.map(m => m.setMap(null));
-            markers = [];
-            locations.map(location => markers.push(new google.maps.Marker({position: location})));
-            markers.map(m => m.setMap(map));
+        const markers = new function() {
+            let markers = [];
+            this.refresh = function (locations) {
+                markers.map(m => m.setMap(null));
+                markers = [];
+                locations.map(location => markers.push(new google.maps.Marker({position: location})));
+                markers.map(m => m.setMap(map));
+            };
         };
-
-        withLocation(location => api.init(location));
 
         withLocation(function (location) {
             map.setCenter(location);
             map.setZoom(11);
         });
 
-        api.getLocations(refreshMarkers);
+        api.getLocations(markers.refresh);
+        withLocation(api.sendLocation);
         setInterval(
-            function () {
-                api.getLocations(refreshMarkers);
-            },
-            10000
+            () => withLocation(api.sendLocation),
+            60000
+        );
+        setInterval(
+            () => api.getLocations(markers.refresh),
+            1000
         );
     };
 })();

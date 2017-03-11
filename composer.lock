@@ -4,34 +4,33 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "86ee627be409e590d41f20f29d583669",
+    "content-hash": "587baaa04050113d4923112c8b008484",
     "packages": [
         {
-            "name": "f3ath/silex-config",
+            "name": "f3ath/pimple-config",
             "version": "1.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/f3ath/silex-config.git",
-                "reference": "e81d4b5efe7a3ab37364ea0c5ae57b3552cbf3c0"
+                "url": "https://github.com/f3ath/pimple-config.git",
+                "reference": "297d5128b514044d7bb3de92ee007e599adab765"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/f3ath/silex-config/zipball/e81d4b5efe7a3ab37364ea0c5ae57b3552cbf3c0",
-                "reference": "e81d4b5efe7a3ab37364ea0c5ae57b3552cbf3c0",
+                "url": "https://api.github.com/repos/f3ath/pimple-config/zipball/297d5128b514044d7bb3de92ee007e599adab765",
+                "reference": "297d5128b514044d7bb3de92ee007e599adab765",
                 "shasum": ""
             },
-            "require-dev": {
-                "phpunit/phpunit": "^6.0",
-                "silex/silex": "^2",
-                "squizlabs/php_codesniffer": "^2.8"
+            "require": {
+                "pimple/pimple": "^3"
             },
-            "suggest": {
-                "silex/silex": "Silex Framework"
+            "require-dev": {
+                "phpunit/phpunit": "^6",
+                "squizlabs/php_codesniffer": "^2.8"
             },
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "F3\\SilexConfig\\": "src/"
+                    "F3\\PimpleConfig\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -44,111 +43,8 @@
                     "email": "karapetov@gmail.com"
                 }
             ],
-            "description": "Simple multi-environment configuration for Silex with secret storage support",
-            "time": "2017-03-02T02:33:47+00:00"
-        },
-        {
-            "name": "neomerx/json-api",
-            "version": "v1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/neomerx/json-api.git",
-                "reference": "84355a83fdca251f2734fb6173c654ecf6b5330d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/neomerx/json-api/zipball/84355a83fdca251f2734fb6173c654ecf6b5330d",
-                "reference": "84355a83fdca251f2734fb6173c654ecf6b5330d",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.5.0",
-                "psr/http-message": "^1.0",
-                "psr/log": "^1.0"
-            },
-            "require-dev": {
-                "mockery/mockery": "~0.9.4",
-                "monolog/monolog": "^1.18",
-                "phpmd/phpmd": "^2.6",
-                "phpunit/phpunit": "^4.6 || ^5.0 || ^6.0",
-                "scrutinizer/ocular": "^1.3",
-                "squizlabs/php_codesniffer": "^2.5"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Neomerx\\JsonApi\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache-2.0"
-            ],
-            "authors": [
-                {
-                    "name": "neomerx",
-                    "email": "info@neomerx.com"
-                }
-            ],
-            "description": "Framework agnostic JSON API (jsonapi.org) implementation",
-            "homepage": "https://github.com/neomerx/json-api",
-            "keywords": [
-                "JSON-API",
-                "api",
-                "json",
-                "jsonapi",
-                "jsonapi.org",
-                "neomerx"
-            ],
-            "time": "2017-02-17T09:03:53+00:00"
-        },
-        {
-            "name": "paragonie/random_compat",
-            "version": "v2.0.9",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/paragonie/random_compat.git",
-                "reference": "6968531206671f94377b01dc7888d5d1b858a01b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/6968531206671f94377b01dc7888d5d1b858a01b",
-                "reference": "6968531206671f94377b01dc7888d5d1b858a01b",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.2.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "4.*|5.*"
-            },
-            "suggest": {
-                "ext-libsodium": "Provides a modern crypto API that can be used to generate random bytes."
-            },
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "lib/random.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Paragon Initiative Enterprises",
-                    "email": "security@paragonie.com",
-                    "homepage": "https://paragonie.com"
-                }
-            ],
-            "description": "PHP 5.x polyfill for random_bytes() and random_int() from PHP 7",
-            "keywords": [
-                "csprng",
-                "pseudorandom",
-                "random"
-            ],
-            "time": "2017-03-03T20:43:42+00:00"
+            "description": "Simple multi-environment configuration for Pimple with secret storage support",
+            "time": "2017-03-07T09:48:37+00:00"
         },
         {
             "name": "pimple/pimple",
@@ -197,56 +93,6 @@
             "time": "2015-09-11T15:10:35+00:00"
         },
         {
-            "name": "psr/http-message",
-            "version": "1.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/php-fig/http-message.git",
-                "reference": "f6561bf28d520154e4b0ec72be95418abe6d9363"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/http-message/zipball/f6561bf28d520154e4b0ec72be95418abe6d9363",
-                "reference": "f6561bf28d520154e4b0ec72be95418abe6d9363",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Psr\\Http\\Message\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "PHP-FIG",
-                    "homepage": "http://www.php-fig.org/"
-                }
-            ],
-            "description": "Common interface for HTTP messages",
-            "homepage": "https://github.com/php-fig/http-message",
-            "keywords": [
-                "http",
-                "http-message",
-                "psr",
-                "psr-7",
-                "request",
-                "response"
-            ],
-            "time": "2016-08-06T14:39:51+00:00"
-        },
-        {
             "name": "psr/log",
             "version": "1.0.2",
             "source": {
@@ -292,88 +138,6 @@
                 "psr-3"
             ],
             "time": "2016-10-10T12:19:37+00:00"
-        },
-        {
-            "name": "ramsey/uuid",
-            "version": "3.5.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ramsey/uuid.git",
-                "reference": "5677cfe02397dd6b58c861870dfaa5d9007d3954"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ramsey/uuid/zipball/5677cfe02397dd6b58c861870dfaa5d9007d3954",
-                "reference": "5677cfe02397dd6b58c861870dfaa5d9007d3954",
-                "shasum": ""
-            },
-            "require": {
-                "paragonie/random_compat": "^1.0|^2.0",
-                "php": ">=5.4"
-            },
-            "replace": {
-                "rhumsaa/uuid": "self.version"
-            },
-            "require-dev": {
-                "apigen/apigen": "^4.1",
-                "codeception/aspect-mock": "1.0.0",
-                "doctrine/annotations": "~1.2.0",
-                "goaop/framework": "1.0.0-alpha.2",
-                "ircmaxell/random-lib": "^1.1",
-                "jakub-onderka/php-parallel-lint": "^0.9.0",
-                "mockery/mockery": "^0.9.4",
-                "moontoast/math": "^1.1",
-                "php-mock/php-mock-phpunit": "^0.3|^1.1",
-                "phpunit/phpunit": "^4.7|>=5.0 <5.4",
-                "satooshi/php-coveralls": "^0.6.1",
-                "squizlabs/php_codesniffer": "^2.3"
-            },
-            "suggest": {
-                "ext-libsodium": "Provides the PECL libsodium extension for use with the SodiumRandomGenerator",
-                "ext-uuid": "Provides the PECL UUID extension for use with the PeclUuidTimeGenerator and PeclUuidRandomGenerator",
-                "ircmaxell/random-lib": "Provides RandomLib for use with the RandomLibAdapter",
-                "moontoast/math": "Provides support for converting UUID to 128-bit integer (in string form).",
-                "ramsey/uuid-console": "A console application for generating UUIDs with ramsey/uuid",
-                "ramsey/uuid-doctrine": "Allows the use of Ramsey\\Uuid\\Uuid as Doctrine field type."
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Ramsey\\Uuid\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Marijn Huizendveld",
-                    "email": "marijn.huizendveld@gmail.com"
-                },
-                {
-                    "name": "Thibaud Fabre",
-                    "email": "thibaud@aztech.io"
-                },
-                {
-                    "name": "Ben Ramsey",
-                    "email": "ben@benramsey.com",
-                    "homepage": "https://benramsey.com"
-                }
-            ],
-            "description": "Formerly rhumsaa/uuid. A PHP 5.4+ library for generating RFC 4122 version 1, 3, 4, and 5 universally unique identifiers (UUID).",
-            "homepage": "https://github.com/ramsey/uuid",
-            "keywords": [
-                "guid",
-                "identifier",
-                "uuid"
-            ],
-            "time": "2016-11-22T19:21:44+00:00"
         },
         {
             "name": "silex/silex",
@@ -462,16 +226,16 @@
         },
         {
             "name": "symfony/debug",
-            "version": "v3.2.4",
+            "version": "v3.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/debug.git",
-                "reference": "9b98854cb45bc59d100b7d4cc4cf9e05f21026b9"
+                "reference": "b90c9f91ad8ac37d9f114e369042d3226b34dc1a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/debug/zipball/9b98854cb45bc59d100b7d4cc4cf9e05f21026b9",
-                "reference": "9b98854cb45bc59d100b7d4cc4cf9e05f21026b9",
+                "url": "https://api.github.com/repos/symfony/debug/zipball/b90c9f91ad8ac37d9f114e369042d3226b34dc1a",
+                "reference": "b90c9f91ad8ac37d9f114e369042d3226b34dc1a",
                 "shasum": ""
             },
             "require": {
@@ -515,20 +279,20 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
-            "time": "2017-02-16T16:34:18+00:00"
+            "time": "2017-02-18T17:28:00+00:00"
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v3.2.4",
+            "version": "v3.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
-                "reference": "9137eb3a3328e413212826d63eeeb0217836e2b6"
+                "reference": "b7a1b9e0a0f623ce43b4c8d775eb138f190c9d8d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/9137eb3a3328e413212826d63eeeb0217836e2b6",
-                "reference": "9137eb3a3328e413212826d63eeeb0217836e2b6",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/b7a1b9e0a0f623ce43b4c8d775eb138f190c9d8d",
+                "reference": "b7a1b9e0a0f623ce43b4c8d775eb138f190c9d8d",
                 "shasum": ""
             },
             "require": {
@@ -575,20 +339,20 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-            "time": "2017-01-02T20:32:22+00:00"
+            "time": "2017-02-21T09:12:04+00:00"
         },
         {
             "name": "symfony/http-foundation",
-            "version": "v3.2.4",
+            "version": "v3.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-foundation.git",
-                "reference": "a90da6dd679605d88c9803a57a6fc1fb7a19a6e0"
+                "reference": "c57009887010eb4e58bfca2970314a5b820b24b9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/a90da6dd679605d88c9803a57a6fc1fb7a19a6e0",
-                "reference": "a90da6dd679605d88c9803a57a6fc1fb7a19a6e0",
+                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/c57009887010eb4e58bfca2970314a5b820b24b9",
+                "reference": "c57009887010eb4e58bfca2970314a5b820b24b9",
                 "shasum": ""
             },
             "require": {
@@ -628,20 +392,20 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "https://symfony.com",
-            "time": "2017-02-16T22:46:52+00:00"
+            "time": "2017-03-04T12:23:14+00:00"
         },
         {
             "name": "symfony/http-kernel",
-            "version": "v3.2.4",
+            "version": "v3.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-kernel.git",
-                "reference": "4cd0d4bc31819095c6ef13573069f621eb321081"
+                "reference": "bc909e85b8585c9edf043d0fca871308c41bb9b4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/4cd0d4bc31819095c6ef13573069f621eb321081",
-                "reference": "4cd0d4bc31819095c6ef13573069f621eb321081",
+                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/bc909e85b8585c9edf043d0fca871308c41bb9b4",
+                "reference": "bc909e85b8585c9edf043d0fca871308c41bb9b4",
                 "shasum": ""
             },
             "require": {
@@ -710,7 +474,7 @@
             ],
             "description": "Symfony HttpKernel Component",
             "homepage": "https://symfony.com",
-            "time": "2017-02-16T23:59:56+00:00"
+            "time": "2017-03-10T18:35:31+00:00"
         },
         {
             "name": "symfony/polyfill-mbstring",
@@ -773,16 +537,16 @@
         },
         {
             "name": "symfony/routing",
-            "version": "v3.2.4",
+            "version": "v3.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/routing.git",
-                "reference": "af464432c177dbcdbb32295113b7627500331f2d"
+                "reference": "d6605f9a5767bc5bc4895e1c762ba93964608aee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/routing/zipball/af464432c177dbcdbb32295113b7627500331f2d",
-                "reference": "af464432c177dbcdbb32295113b7627500331f2d",
+                "url": "https://api.github.com/repos/symfony/routing/zipball/d6605f9a5767bc5bc4895e1c762ba93964608aee",
+                "reference": "d6605f9a5767bc5bc4895e1c762ba93964608aee",
                 "shasum": ""
             },
             "require": {
@@ -844,57 +608,7 @@
                 "uri",
                 "url"
             ],
-            "time": "2017-01-28T02:37:08+00:00"
-        },
-        {
-            "name": "tobscure/json-api",
-            "version": "v0.4.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/tobscure/json-api.git",
-                "reference": "d4ba8437977c33a5189d95d9ffa751997f13b104"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/tobscure/json-api/zipball/d4ba8437977c33a5189d95d9ffa751997f13b104",
-                "reference": "d4ba8437977c33a5189d95d9ffa751997f13b104",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^5.5.9 || ^7.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^4.8 || ^5.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Tobscure\\JsonApi\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Toby Zerner",
-                    "email": "toby.zerner@gmail.com"
-                }
-            ],
-            "description": "JSON-API responses in PHP",
-            "keywords": [
-                "api",
-                "json",
-                "jsonapi",
-                "standard"
-            ],
-            "time": "2017-03-05T21:16:24+00:00"
+            "time": "2017-03-02T15:58:09+00:00"
         }
     ],
     "packages-dev": [
@@ -1173,172 +887,6 @@
             "time": "2017-01-26T22:05:40+00:00"
         },
         {
-            "name": "php-http/guzzle6-adapter",
-            "version": "v1.1.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/php-http/guzzle6-adapter.git",
-                "reference": "a56941f9dc6110409cfcddc91546ee97039277ab"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/php-http/guzzle6-adapter/zipball/a56941f9dc6110409cfcddc91546ee97039277ab",
-                "reference": "a56941f9dc6110409cfcddc91546ee97039277ab",
-                "shasum": ""
-            },
-            "require": {
-                "guzzlehttp/guzzle": "^6.0",
-                "php": ">=5.5.0",
-                "php-http/httplug": "^1.0"
-            },
-            "provide": {
-                "php-http/async-client-implementation": "1.0",
-                "php-http/client-implementation": "1.0"
-            },
-            "require-dev": {
-                "ext-curl": "*",
-                "php-http/adapter-integration-tests": "^0.4"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.2-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Http\\Adapter\\Guzzle6\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Márk Sági-Kazár",
-                    "email": "mark.sagikazar@gmail.com"
-                },
-                {
-                    "name": "David de Boer",
-                    "email": "david@ddeboer.nl"
-                }
-            ],
-            "description": "Guzzle 6 HTTP Adapter",
-            "homepage": "http://httplug.io",
-            "keywords": [
-                "Guzzle",
-                "http"
-            ],
-            "time": "2016-05-10T06:13:32+00:00"
-        },
-        {
-            "name": "php-http/httplug",
-            "version": "v1.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/php-http/httplug.git",
-                "reference": "1c6381726c18579c4ca2ef1ec1498fdae8bdf018"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/php-http/httplug/zipball/1c6381726c18579c4ca2ef1ec1498fdae8bdf018",
-                "reference": "1c6381726c18579c4ca2ef1ec1498fdae8bdf018",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.4",
-                "php-http/promise": "^1.0",
-                "psr/http-message": "^1.0"
-            },
-            "require-dev": {
-                "henrikbjorn/phpspec-code-coverage": "^1.0",
-                "phpspec/phpspec": "^2.4"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.1-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Http\\Client\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Eric GELOEN",
-                    "email": "geloen.eric@gmail.com"
-                },
-                {
-                    "name": "Márk Sági-Kazár",
-                    "email": "mark.sagikazar@gmail.com"
-                }
-            ],
-            "description": "HTTPlug, the HTTP client abstraction for PHP",
-            "homepage": "http://httplug.io",
-            "keywords": [
-                "client",
-                "http"
-            ],
-            "time": "2016-08-31T08:30:17+00:00"
-        },
-        {
-            "name": "php-http/promise",
-            "version": "v1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/php-http/promise.git",
-                "reference": "dc494cdc9d7160b9a09bd5573272195242ce7980"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/php-http/promise/zipball/dc494cdc9d7160b9a09bd5573272195242ce7980",
-                "reference": "dc494cdc9d7160b9a09bd5573272195242ce7980",
-                "shasum": ""
-            },
-            "require-dev": {
-                "henrikbjorn/phpspec-code-coverage": "^1.0",
-                "phpspec/phpspec": "^2.4"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.1-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Http\\Promise\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Márk Sági-Kazár",
-                    "email": "mark.sagikazar@gmail.com"
-                },
-                {
-                    "name": "Joel Wurtz",
-                    "email": "joel.wurtz@gmail.com"
-                }
-            ],
-            "description": "Promise used for asynchronous HTTP requests",
-            "homepage": "http://httplug.io",
-            "keywords": [
-                "promise"
-            ],
-            "time": "2016-01-26T13:27:02+00:00"
-        },
-        {
             "name": "phpdocumentor/reflection-common",
             "version": "1.0",
             "source": {
@@ -1549,16 +1097,16 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "5.0.2",
+            "version": "5.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "531553c4795a1df54114342d68ca337d5d81c8a0"
+                "reference": "4e99e1c4f9b05cbf4d6e84b100b3ff4107cf8cd1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/531553c4795a1df54114342d68ca337d5d81c8a0",
-                "reference": "531553c4795a1df54114342d68ca337d5d81c8a0",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/4e99e1c4f9b05cbf4d6e84b100b3ff4107cf8cd1",
+                "reference": "4e99e1c4f9b05cbf4d6e84b100b3ff4107cf8cd1",
                 "shasum": ""
             },
             "require": {
@@ -1608,7 +1156,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2017-03-01T09:14:18+00:00"
+            "time": "2017-03-06T14:22:16+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -1936,6 +1484,56 @@
                 "xunit"
             ],
             "time": "2017-03-03T06:30:20+00:00"
+        },
+        {
+            "name": "psr/http-message",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/http-message.git",
+                "reference": "f6561bf28d520154e4b0ec72be95418abe6d9363"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/http-message/zipball/f6561bf28d520154e4b0ec72be95418abe6d9363",
+                "reference": "f6561bf28d520154e4b0ec72be95418abe6d9363",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\Http\\Message\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "http://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interface for HTTP messages",
+            "homepage": "https://github.com/php-fig/http-message",
+            "keywords": [
+                "http",
+                "http-message",
+                "psr",
+                "psr-7",
+                "request",
+                "response"
+            ],
+            "time": "2016-08-06T14:39:51+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
@@ -2451,6 +2049,53 @@
             "time": "2016-10-03T07:35:21+00:00"
         },
         {
+            "name": "sorien/silex-pimple-dumper",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Sorien/silex-pimple-dumper.git",
+                "reference": "2d1677402f3d75cc10cfb71532da9f3726cfba00"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Sorien/silex-pimple-dumper/zipball/2d1677402f3d75cc10cfb71532da9f3726cfba00",
+                "reference": "2d1677402f3d75cc10cfb71532da9f3726cfba00",
+                "shasum": ""
+            },
+            "require-dev": {
+                "silex/silex": "~2.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Sorien\\Provider\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Stanislav Turza",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Pimple File Dumper - Helper Provider for Silex Idea Plugin",
+            "keywords": [
+                "dumper",
+                "idea",
+                "plugin",
+                "silex"
+            ],
+            "time": "2016-05-31T11:15:09+00:00"
+        },
+        {
             "name": "symfony/psr-http-message-bridge",
             "version": "v1.0.0",
             "source": {
@@ -2559,59 +2204,6 @@
                 "validate"
             ],
             "time": "2016-11-23T20:04:58+00:00"
-        },
-        {
-            "name": "woohoolabs/yang",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/woohoolabs/yang.git",
-                "reference": "9c976662d98819b6f013807b1bd5c27f10d37d7d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/woohoolabs/yang/zipball/9c976662d98819b6f013807b1bd5c27f10d37d7d",
-                "reference": "9c976662d98819b6f013807b1bd5c27f10d37d7d",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.0.0",
-                "php-http/client-implementation": "^1.0.0",
-                "php-http/httplug": "^1.0.0",
-                "psr/http-message-implementation": "^1.0.0"
-            },
-            "require-dev": {
-                "php-http/guzzle6-adapter": "^1.1.0",
-                "phpunit/phpunit": "^6.0.0",
-                "squizlabs/php_codesniffer": "^2.8.0"
-            },
-            "suggest": {
-                "php-http/guzzle6-adapter": "Allows to use Guzzle 6 as the HTTP client implementation"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "WoohooLabs\\Yang\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Máté Kocsis",
-                    "email": "kocsismate@woohoolabs.com"
-                }
-            ],
-            "description": "Woohoo Labs. Yang",
-            "keywords": [
-                "Woohoo Labs.",
-                "Yang",
-                "json api",
-                "psr-7"
-            ],
-            "time": "2017-02-28T19:10:01+00:00"
         },
         {
             "name": "zendframework/zend-diactoros",

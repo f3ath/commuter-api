@@ -1,11 +1,13 @@
 <?php
 return [
     'services' => [
-        'app' => __DIR__ . '/services/app.php',
-        'routing' => __DIR__ . '/services/routing.php',
+        'application' => __DIR__ . '/services/application.php',
+        'storage' => __DIR__ . '/services/storage.php',
+        'web_app' => __DIR__ . '/services/web_app.php',
     ],
     'debug' => false,
     'storage' => [
-        'dsn' => 'sqlite:/tmp/db.sq3'
+        'dsn' => 'sqlite:/tmp/db.sq3',
+        'lifetime' => 60,
     ]
 ];
