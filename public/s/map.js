@@ -75,7 +75,7 @@
         );
         setInterval(
             () => api.getLocations(markers.refresh),
-            1000
+            10000
         );
     };
 })();
