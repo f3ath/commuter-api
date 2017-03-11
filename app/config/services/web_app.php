@@ -13,8 +13,8 @@ return function (Container $container, array $config) {
     ]);
 
     $silex->register(new ServiceControllerServiceProvider());
-    $silex->post('/locations', 'controller.locations:addLocation');
-    $silex->get('/current_locations', 'controller.locations:getCurrentLocations');
+    $silex->post('/api/locations', 'controller.locations:addLocation');
+    $silex->get('/api/current_locations', 'controller.locations:getCurrentLocations');
     $silex->error(function (Throwable $e) {
         error_log($e);
     });

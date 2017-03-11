@@ -9,7 +9,7 @@
 
         this.sendLocation = function (location) {
             jq.post({
-                url: '/locations',
+                url: '/api/locations',
                 type: 'POST',
                 contentType: 'application/vnd.api+json',
                 processData: false,
@@ -26,7 +26,7 @@
 
         this.getLocations = function (callback) {
             jq.ajax({
-                url: '/current_locations',
+                url: '/api/current_locations',
                 contentType: 'application/vnd.api+json',
                 success: response => callback(
                     response.data ? response.data.attributes.locations : []
@@ -78,11 +78,11 @@
         withLocation(api.sendLocation);
         setInterval(
             () => withLocation(api.sendLocation),
-            5000
+            10000
         );
         setInterval(
             () => api.getLocations(markers.refresh),
-            5000
+            1000
         );
     };
 })();
