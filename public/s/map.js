@@ -61,13 +61,11 @@
 
         const markers = new function() {
             let markers = [];
-            let new_markers = [];
             this.refresh = function (locations) {
-                locations.map(location => new_markers.push(new google.maps.Marker({position: location})));
-                new_markers.map(m => m.setMap(map));
-
                 markers.map(m => m.setMap(null));
-                markers = new_markers.slice();
+                markers = [];
+                locations.map(location => markers.push(new google.maps.Marker({position: location})));
+                markers.map(m => m.setMap(map));
             };
         };
 
