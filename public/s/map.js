@@ -82,7 +82,7 @@
         );
         setInterval(
             () => api.getLocations(markers.refresh),
-            1000
+            3000
         );
     };
 })();
