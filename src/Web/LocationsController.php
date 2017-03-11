@@ -21,7 +21,8 @@ class LocationsController
             'lat' => $json->data->attributes->lat,
             'lng' => $json->data->attributes->lng
         ];
-        $this->application->add($location);
+        $id = $json->data->id;
+        $this->application->set($id, $location);
         return new Response('', Response::HTTP_NO_CONTENT);
     }
 

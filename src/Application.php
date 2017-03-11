@@ -3,23 +3,22 @@ namespace F3\Commuter;
 
 class Application
 {
-    private $expirable_storage;
+    private $storage;
 
     public function __construct(ExpirableStorage $expirable_storage)
     {
-        $this->expirable_storage = $expirable_storage;
+        $this->storage = $expirable_storage;
     }
 
-    public function add(array $location): void
+    public function set(string $id, array $location): void
     {
-        $this->expirable_storage->add(serialize($location));
+        $this->storage->set($id, serialize($location));
     }
 
     public function getAll(): array
     {
         $locations = [];
-        foreach ($this->expirable_storage->getAll() as $serialized)
-        {
+        foreach ($this->storage->getAll() as $serialized) {
             $locations[] = unserialize($serialized);
         }
         return $locations;

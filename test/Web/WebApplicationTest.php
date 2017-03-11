@@ -26,17 +26,18 @@ class WebApplicationTest extends TestCase
         $this->web_client = (new GuzzleFactory())->createClient($di['web_app']);
     }
 
-    public function testAdd()
+    public function testSet()
     {
         $this->app->expects($this->once())
-            ->method('add')
-            ->with(['lat' => 1.23, 'lng' => -3.21]);
+            ->method('set')
+            ->with('test_key', ['lat' => 1.23, 'lng' => -3.21]);
         $response = $this->web_client->post(
             '/locations',
             [
                 'json' => [
                     'data' => [
                         'type'       => 'locations',
+                        'id' => 'test_key',
                         'attributes' => [
                             'lat' => 1.23,
                             'lng' => -3.21,

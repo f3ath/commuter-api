@@ -14,17 +14,25 @@ class ExpirableStorage
 
     public static function createInMemory(float $lifetime_seconds)
     {
-        $storage = new self(new \PDO('sqlite::memory:'), $lifetime_seconds);
+        $storage = new self(self::createInMemoryPDO(), $lifetime_seconds);
         $storage->init();
         return $storage;
     }
 
-    public function add(string $value)
+    private static function createInMemoryPDO(): \PDO
     {
-        $insert = $this->pdo->prepare('INSERT INTO storage (val, expires) VALUES (:v, :e)');
+        $pdo_options = [\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION];
+        return new \PDO('sqlite::memory:', null, null, $pdo_options);
+    }
+
+    public function set(string $id, string $value)
+    {
+        $this->cleanRandomly();
+        $insert = $this->pdo->prepare('INSERT OR REPLACE INTO storage (id, val, expires) VALUES (:id, :val, :exp)');
         $parameters = [
-            'v' => serialize($value),
-            'e' => microtime(true) + $this->lifetime,
+            'id' => $id,
+            'val' => serialize($value),
+            'exp' => microtime(true) + $this->lifetime,
         ];
         $insert->execute($parameters);
     }
@@ -43,7 +51,22 @@ class ExpirableStorage
 
     public function init(): void
     {
-        $this->pdo->exec('CREATE TABLE IF NOT EXISTS storage (id INTEGER PRIMARY KEY, val TEXT, expires REAL)');
-        $this->pdo->exec('CREATE INDEX IF NOT EXISTS ON storage (expires)');
+        $this->pdo->exec('CREATE TABLE IF NOT EXISTS storage (id TEXT PRIMARY KEY, val TEXT, expires REAL)');
+        $this->pdo->exec('CREATE INDEX IF NOT EXISTS expires_ind ON storage (expires)');
+    }
+
+    public function clean()
+    {
+        $delete = $this->pdo->prepare('DELETE FROM storage WHERE expires < :e');
+        $delete->execute([
+            'e' => microtime(true),
+        ]);
+    }
+
+    private function cleanRandomly(): void
+    {
+        if (mt_rand(0, 9) < 1) {
+            $this->clean();
+        }
     }
 }

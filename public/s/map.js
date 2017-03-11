@@ -2,6 +2,11 @@
     "use strict";
 
     const ApiClient = function (jq) {
+        const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+            let r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+            return v.toString(16);
+        });
+
         this.sendLocation = function (location) {
             jq.post({
                 url: '/locations',
@@ -12,6 +17,7 @@
                 data: JSON.stringify({
                     data: {
                         type: 'locations',
+                        id: uuid,
                         attributes: location,
                     }
                 }),
@@ -39,6 +45,7 @@
                 center: SanFrancisco
             }
         );
+
 
         const withLocation = function (callback) {
             if (navigator.geolocation) {
@@ -71,11 +78,11 @@
         withLocation(api.sendLocation);
         setInterval(
             () => withLocation(api.sendLocation),
-            60000
+            5000
         );
         setInterval(
             () => api.getLocations(markers.refresh),
-            10000
+            5000
         );
     };
 })();
