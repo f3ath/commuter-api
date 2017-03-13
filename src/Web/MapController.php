@@ -12,8 +12,13 @@ class MapController
         $this->map_key = $map_key;
     }
 
-    public function renderMap()
+    public function renderMap(string $map_name)
     {
-        return $this->twig->load('map.twig')->render(['map_key' => $this->map_key]);
+        return $this->twig
+            ->load('map.twig')
+            ->render([
+                'map_key' => $this->map_key,
+                'map_name' => $map_name,
+            ]);
     }
 }
