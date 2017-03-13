@@ -9,5 +9,8 @@ return [
     'storage' => [
         'dsn' => 'sqlite:/tmp/db.sq3',
         'lifetime' => 60,
+    ],
+    'map' => [
+        'key' => 'AIzaSyA22BIkVsUn_QPZ_i9vPkJLNlDzHG1v-wE'
     ]
 ];

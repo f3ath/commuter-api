@@ -7,17 +7,17 @@ use Symfony\Component\HttpFoundation\Request;
 
 class LocationsController
 {
-    private $application;
+    private $commuter_app;
 
-    public function __construct(Application $application)
+    public function __construct(Application $commuter_app)
     {
-        $this->application = $application;
+        $this->commuter_app = $commuter_app;
     }
 
     public function addLocation(Request $request)
     {
         $json = json_decode($request->getContent());
-        $this->application->set(
+        $this->commuter_app->set(
             $json->data->id,
             [
                 'lat' => $json->data->attributes->lat,
@@ -34,7 +34,7 @@ class LocationsController
                 'type' => 'current_locations',
                 'id' => (string) time(),
                 'attributes' => [
-                    'locations' => $this->application->getAll()
+                    'locations' => $this->commuter_app->getAll()
                 ]
             ]
         ]);
