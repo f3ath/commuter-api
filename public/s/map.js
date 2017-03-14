@@ -1,6 +1,6 @@
-(function () {
+(function (window) {
     "use strict";
-
+    const config = window.config;
     const ApiClient = function (jq) {
         const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
             let r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
@@ -9,7 +9,7 @@
 
         this.sendLocation = function (location) {
             jq.post({
-                url: '/api/v0/map/default/locations',
+                url: '/api/v0/map/' + encodeURI(config.map_name) + '/locations',
                 type: 'POST',
                 contentType: 'application/vnd.api+json',
                 processData: false,
@@ -26,7 +26,7 @@
 
         this.getLocations = function (callback) {
             jq.ajax({
-                url: '/api/v0/map/default/current_locations',
+                url: '/api/v0/map/' + encodeURI(config.map_name) + '/current_locations',
                 contentType: 'application/vnd.api+json',
                 success: response => callback(
                     response.data ? response.data.attributes.locations : []
@@ -65,8 +65,6 @@
                 markers.map(m => m.setMap(null));
                 markers = [];
                 locations.map(location => markers.push(
-                    //new google.maps.Marker({position: {lat: location.lat, lng: location.lng}})
-                    //alert(JSON.stringify(location)) &&
                     new google.maps.Marker({position: {lat: 0 + location.lat, lng: 0 + location.lng}})
                 ));
                 markers.map(m => m.setMap(map));
@@ -89,5 +87,5 @@
             3000
         );
     };
-})();
+})(window);
 

@@ -9,6 +9,9 @@
 </head>
 <body>
 <div id="map"></div>
+<script type="application/javascript">
+    window.config = {{ config|json_encode|raw }};
+</script>
 <script type="text/javascript" src="/s/map.js"></script>
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key={{ map_key }}&callback=initMap">
