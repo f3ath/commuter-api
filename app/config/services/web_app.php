@@ -19,12 +19,11 @@ return function (Container $container, array $config) {
 
     $silex->register(new ServiceControllerServiceProvider());
     $silex->register(new TwigServiceProvider(), ['twig.path' => __DIR__ . '/../../view/web']);
+    $silex->error(function (Throwable $e) { error_log($e); });
+
     $silex->get('/', function (Application $app) { return $app->redirect('/map/default');});
     $silex->get('/map/{map_name}', 'controller.map:renderMap');
-    $silex->post('/api/locations', 'controller.locations:addLocation');
-    $silex->get('/api/current_locations', 'controller.locations:getCurrentLocations');
-    $silex->error(function (Throwable $e) {
-        error_log($e);
-    });
+    $silex->post('/api/v0/map/{map_id}/locations', 'controller.locations:addLocation');
+    $silex->get('/api/v0/map/{map_id}/current_locations', 'controller.locations:getCurrentLocations');
     $container['web_app'] = $silex;
 };
