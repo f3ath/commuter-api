@@ -29,10 +29,13 @@ class WebApplicationTest extends TestCase
     public function testSet()
     {
         $this->app->expects($this->once())
-            ->method('set')
-            ->with('test_key', ['lat' => 1.23, 'lng' => -3.21]);
+            ->method('addLocation')
+            ->with(
+                'test_map',
+                ['id' => 'test_key', 'lat' => 1.23, 'lng' => -3.21, 'expires' => 60]
+            );
         $response = $this->web_client->post(
-            '/api/locations',
+            '/api/v0/map/test_map/locations',
             [
                 'json' => [
                     'data' => [
@@ -52,13 +55,14 @@ class WebApplicationTest extends TestCase
     public function testGetAll()
     {
         $this->app->expects($this->once())
-            ->method('getAll')
+            ->method('getLocations')
+            ->with('test_map')
             ->willReturn(
                 [
                     ['lat' => 1.23, 'lng' => -3.21],
                 ]
             );
-        $response = $this->web_client->get('/api/current_locations');
+        $response = $this->web_client->get('/api/v0/map/test_map/current_locations');
         self::assertStatusCode(200, $response);
         $json = json_decode($response->getBody());
         $data = $json->data;

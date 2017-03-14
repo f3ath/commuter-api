@@ -27,7 +27,6 @@
   },
   "scripts": {
     "app_test": "vendor/bin/phpunit",
-    "app_install": "scripts/install.php",
-    "app_clean": "scripts/clean.php"
+    "app_install": "scripts/install.php"
   }
 }

@@ -9,7 +9,7 @@
 
         this.sendLocation = function (location) {
             jq.post({
-                url: '/api/locations',
+                url: '/api/v0/map/default/locations',
                 type: 'POST',
                 contentType: 'application/vnd.api+json',
                 processData: false,
@@ -26,7 +26,7 @@
 
         this.getLocations = function (callback) {
             jq.ajax({
-                url: '/api/current_locations',
+                url: '/api/v0/map/default/current_locations',
                 contentType: 'application/vnd.api+json',
                 success: response => callback(
                     response.data ? response.data.attributes.locations : []
@@ -64,7 +64,11 @@
             this.refresh = function (locations) {
                 markers.map(m => m.setMap(null));
                 markers = [];
-                locations.map(location => markers.push(new google.maps.Marker({position: location})));
+                locations.map(location => markers.push(
+                    //new google.maps.Marker({position: {lat: location.lat, lng: location.lng}})
+                    //alert(JSON.stringify(location)) &&
+                    new google.maps.Marker({position: {lat: 0 + location.lat, lng: 0 + location.lng}})
+                ));
                 markers.map(m => m.setMap(map));
             };
         };

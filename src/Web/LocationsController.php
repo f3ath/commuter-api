@@ -14,27 +14,29 @@ class LocationsController
         $this->commuter_app = $commuter_app;
     }
 
-    public function addLocation(Request $request)
+    public function addLocation(Request $request, string $map_id)
     {
         $json = json_decode($request->getContent());
-        $this->commuter_app->set(
-            $json->data->id,
+        $this->commuter_app->addLocation(
+            $map_id,
             [
+                'id' => $json->data->id,
                 'lat' => $json->data->attributes->lat,
-                'lng' => $json->data->attributes->lng
+                'lng' => $json->data->attributes->lng,
+                'expires' => 60,
             ]
         );
         return new Response('', Response::HTTP_NO_CONTENT);
     }
 
-    public function getCurrentLocations()
+    public function getCurrentLocations(string $map_id)
     {
         return new Response([
             'data' => [
                 'type' => 'current_locations',
                 'id' => (string) time(),
                 'attributes' => [
-                    'locations' => $this->commuter_app->getAll()
+                    'locations' => $this->commuter_app->getLocations($map_id)
                 ]
             ]
         ]);
