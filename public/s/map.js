@@ -45,8 +45,7 @@
                 center: SanFrancisco
             }
         );
-
-
+        
         const withLocation = function (callback) {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(
@@ -65,7 +64,7 @@
                 markers.map(m => m.setMap(null));
                 markers = [];
                 locations.map(location => markers.push(
-                    new google.maps.Marker({position: {lat: 0 + location.lat, lng: 0 + location.lng}})
+                    new google.maps.Marker({position: location})
                 ));
                 markers.map(m => m.setMap(map));
             };
