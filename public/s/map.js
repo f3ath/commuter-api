@@ -1,9 +1,13 @@
+'use strict';
+
 (function (window) {
     "use strict";
-    const config = window.config;
-    const ApiClient = function (jq) {
-        const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-            let r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+
+    var config = window.config;
+    var ApiClient = function ApiClient(jq) {
+        var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+            var r = Math.random() * 16 | 0,
+                v = c == 'x' ? r : r & 0x3 | 0x8;
             return v.toString(16);
         });
 
@@ -18,9 +22,9 @@
                     data: {
                         type: 'locations',
                         id: uuid,
-                        attributes: location,
+                        attributes: location
                     }
-                }),
+                })
             });
         };
 
@@ -28,47 +32,47 @@
             jq.ajax({
                 url: '/api/v0/map/' + encodeURI(config.map_name) + '/current_locations',
                 contentType: 'application/vnd.api+json',
-                success: response => callback(
-                    response.data ? response.data.attributes.locations : []
-                )
+                success: function success(response) {
+                    return callback(response.data ? response.data.attributes.locations : []);
+                }
             });
         };
-
     };
 
     window['initMap'] = function () {
-        const SanFrancisco = {lat: 37.7749, lng: -122.4194};
-        const map = new google.maps.Map(
-            document.getElementById('map'),
-            {
-                zoom: 4,
-                center: SanFrancisco
-            }
-        );
-        
-        const withLocation = function (callback) {
+        var SanFrancisco = { lat: 37.7749, lng: -122.4194 };
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 4,
+            center: SanFrancisco
+        });
+
+        var withLocation = function withLocation(callback) {
             if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(
-                    pos => callback({lat: pos.coords.latitude, lng: pos.coords.longitude})
-                );
+                navigator.geolocation.getCurrentPosition(function (pos) {
+                    return callback({ lat: pos.coords.latitude, lng: pos.coords.longitude });
+                });
             } else {
                 console.log('Oh shi... Geolocation is not supported');
             }
         };
 
-        const api = new ApiClient(jQuery);
+        var api = new ApiClient(jQuery);
 
-        const markers = new function() {
-            let markers = [];
+        var markers = new function () {
+            var markers = [];
             this.refresh = function (locations) {
-                markers.map(m => m.setMap(null));
+                markers.map(function (m) {
+                    return m.setMap(null);
+                });
                 markers = [];
-                locations.map(location => markers.push(
-                    new google.maps.Marker({position: location})
-                ));
-                markers.map(m => m.setMap(map));
+                locations.map(function (location) {
+                    return markers.push(new google.maps.Marker({ position: location }));
+                });
+                markers.map(function (m) {
+                    return m.setMap(map);
+                });
             };
-        };
+        }();
 
         withLocation(function (location) {
             map.setCenter(location);
@@ -77,14 +81,11 @@
 
         api.getLocations(markers.refresh);
         withLocation(api.sendLocation);
-        setInterval(
-            () => withLocation(api.sendLocation),
-            10000
-        );
-        setInterval(
-            () => api.getLocations(markers.refresh),
-            3000
-        );
+        setInterval(function () {
+            return withLocation(api.sendLocation);
+        }, 10000);
+        setInterval(function () {
+            return api.getLocations(markers.refresh);
+        }, 3000);
     };
 })(window);
-

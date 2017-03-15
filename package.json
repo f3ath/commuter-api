@@ -1,0 +1,21 @@
+{
+  "name": "commuter-api",
+  "version": "0.0.1",
+  "description": "pew-pew",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.0",
+    "babel-preset-env": "^1.2.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/f3ath/commuter-api.git"
+  },
+  "license": "MIT",
+  "scripts": {
+    "build": "babel app/js/ -d public/s/"
+  }
+}
