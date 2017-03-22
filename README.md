@@ -9,3 +9,4 @@ APP_ENV=dev php scripts/install.php
 ```
 APP_ENV=dev php -S localhost:8888 -t public/ public/app_local.php
 ```
+* Navigate to http://localhost:8888
