@@ -1,5 +1,5 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace F3\Commuter;
 
@@ -20,6 +20,8 @@ class Application
             'CREATE TABLE locations (
               map_id TEXT, 
               location_id TEXT, 
+              description TEXT, 
+              type TEXT, 
               lat FLOAT, 
               lng FLOAT,
               expires INTEGER,
@@ -33,30 +35,35 @@ class Application
     {
         $this->clearStorage();
         $insert = $this->pdo->prepare(
-            'INSERT OR REPLACE INTO locations (map_id, location_id, lat, lng, expires) VALUES (:map_id, :loc_id, :lat, :lng, :exp)'
+            'INSERT OR REPLACE INTO locations 
+              (map_id, location_id, lat, lng, expires, description, type) 
+            VALUES 
+              (:map_id, :loc_id, :lat, :lng, :exp, :description, :type)'
         );
         $insert->execute([
-            'map_id' => $map_id,
-            'loc_id' => $location['id'],
-            'lat' => $location['lat'],
-            'lng' => $location['lng'],
-            'exp' => $this->now->getTimestamp() + $location['expires']
+            'map_id'      => $map_id,
+            'loc_id'      => $location['id'],
+            'lat'         => $location['lat'],
+            'lng'         => $location['lng'],
+            'description' => $location['description'],
+            'type'        => $location['type'],
+            'exp'         => $this->now->getTimestamp() + $location['expires'],
         ]);
     }
 
     public function getLocations(string $map_id): array
     {
         $select = $this->pdo->prepare(
-            'SELECT location_id AS id, lat, lng FROM locations WHERE map_id = :map_id AND expires > :exp'
+            'SELECT location_id AS id, lat, lng, description, type FROM locations WHERE map_id = :map_id AND expires > :exp'
         );
         $select->execute([
             'map_id' => $map_id,
-            'exp' => $this->now->getTimestamp()
+            'exp'    => $this->now->getTimestamp(),
         ]);
         $locations = [];
         foreach ($select->fetchAll(\PDO::FETCH_ASSOC) as $location) {
-            $location['lat'] = (float) $location['lat'];
-            $location['lng'] = (float) $location['lng'];
+            $location['lat'] = (float)$location['lat'];
+            $location['lng'] = (float)$location['lng'];
             $locations[] = $location;
         };
         return $locations;

@@ -1,5 +1,5 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace F3\Commuter\Web;
 
@@ -28,13 +28,20 @@ class WebApplicationTest extends TestCase
         $this->web_client = (new GuzzleFactory())->createClient($di['web_app']);
     }
 
-    public function testSet()
+    public function testSetPoint()
     {
         $this->app->expects($this->once())
             ->method('addLocation')
             ->with(
                 'test_map',
-                ['id' => 'test_key', 'lat' => 1.23, 'lng' => -3.21, 'expires' => 60]
+                [
+                    'id'          => 'test_key',
+                    'lat'         => 1.23,
+                    'lng'         => -3.21,
+                    'expires'     => 60,
+                    'description' => null,
+                    'type'        => null,
+                ]
             );
         $response = $this->web_client->post(
             '/api/v0/map/test_map/locations',
@@ -42,10 +49,46 @@ class WebApplicationTest extends TestCase
                 'json' => [
                     'data' => [
                         'type'       => 'locations',
-                        'id' => 'test_key',
+                        'id'         => 'test_key',
                         'attributes' => [
                             'lat' => 1.23,
                             'lng' => -3.21,
+                        ],
+                    ],
+                ],
+            ]
+        );
+        self::assertStatusCode(204, $response);
+    }
+
+    public function testSetSpecialPoint()
+    {
+        $this->app->expects($this->once())
+            ->method('addLocation')
+            ->with(
+                'test_map',
+                [
+                    'id'          => 'test_key',
+                    'lat'         => 1.23,
+                    'lng'         => -3.21,
+                    'expires'     => 180,
+                    'description' => 'my special point',
+                    'type'        => 'special',
+                ]
+            );
+        $response = $this->web_client->post(
+            '/api/v0/map/test_map/locations',
+            [
+                'json' => [
+                    'data' => [
+                        'type'       => 'locations',
+                        'id'         => 'test_key',
+                        'attributes' => [
+                            'lat'         => 1.23,
+                            'lng'         => -3.21,
+                            'expires'     => 180,
+                            'description' => 'my special point',
+                            'type'        => 'special',
                         ],
                     ],
                 ],
@@ -64,15 +107,15 @@ class WebApplicationTest extends TestCase
                     ['lat' => 1.23, 'lng' => -3.21],
                 ]
             );
-        $response = $this->web_client->get('/api/v0/map/test_map/current_locations');
+        $response = $this->web_client->get('/api/v0/map/test_map/locations');
         self::assertStatusCode(200, $response);
-        $json = json_decode((string) $response->getBody());
+        $json = json_decode((string)$response->getBody());
         $data = $json->data;
         self::assertEquals('current_locations', $data->type);
         self::assertNotEmpty($data->id);
         self::assertEquals(
             [
-                (object) ['lat' => 1.23, 'lng' => -3.21],
+                (object)['lat' => 1.23, 'lng' => -3.21],
             ],
             $data->attributes->locations
         );

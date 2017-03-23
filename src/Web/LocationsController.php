@@ -1,5 +1,5 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace F3\Commuter\Web;
 
@@ -18,14 +18,16 @@ class LocationsController
 
     public function addLocation(Request $request, string $map_id)
     {
-        $json = json_decode($request->getContent());
+        $data = json_decode($request->getContent())->data;
         $this->commuter_app->addLocation(
             $map_id,
             [
-                'id' => $json->data->id,
-                'lat' => $json->data->attributes->lat,
-                'lng' => $json->data->attributes->lng,
-                'expires' => 60,
+                'id'          => $data->id,
+                'lat'         => $data->attributes->lat,
+                'lng'         => $data->attributes->lng,
+                'description' => $data->attributes->description ?? null,
+                'expires'     => $data->attributes->expires ?? 60,
+                'type'        => $data->attributes->type ?? null,
             ]
         );
         return new Response('', Response::HTTP_NO_CONTENT);
@@ -35,12 +37,12 @@ class LocationsController
     {
         return new Response([
             'data' => [
-                'type' => 'current_locations',
-                'id' => (string) time(),
+                'type'       => 'current_locations',
+                'id'         => (string)time(),
                 'attributes' => [
-                    'locations' => $this->commuter_app->getLocations($map_id)
-                ]
-            ]
+                    'locations' => $this->commuter_app->getLocations($map_id),
+                ],
+            ],
         ]);
     }
 }

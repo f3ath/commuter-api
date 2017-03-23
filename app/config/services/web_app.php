@@ -24,6 +24,6 @@ return function (Container $container, array $config) {
     $silex->get('/', 'controller.map:redirectToRandomMap');
     $silex->get('/map/{map_name}', 'controller.map:renderMap');
     $silex->post('/api/v0/map/{map_id}/locations', 'controller.locations:addLocation');
-    $silex->get('/api/v0/map/{map_id}/current_locations', 'controller.locations:getCurrentLocations');
+    $silex->get('/api/v0/map/{map_id}/locations', 'controller.locations:getCurrentLocations');
     $container['web_app'] = $silex;
 };

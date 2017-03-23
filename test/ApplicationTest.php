@@ -1,5 +1,5 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace F3\Commuter;
 
@@ -73,10 +73,12 @@ class ApplicationTest extends TestCase
     {
         return array_replace_recursive(
             [
-                'id'      => 'my_point' . mt_rand(),
-                'lat'     => 1 + mt_rand(0, 1000) / 1000,
-                'lng'     => 2 + mt_rand(0, 1000) / 1000,
-                'expires' => 1,
+                'id'          => 'my_point' . mt_rand(),
+                'description' => 'description ' . mt_rand(),
+                'type'        => 'my_type',
+                'lat'         => 1 + mt_rand(0, 1000) / 1000,
+                'lng'         => 2 + mt_rand(0, 1000) / 1000,
+                'expires'     => 1,
             ],
             $filter
         );
@@ -93,9 +95,11 @@ class ApplicationTest extends TestCase
         sort($b);
         $filter = function (array $a) {
             return array_intersect_key($a, [
-                'id'  => 1,
-                'lat' => 1,
-                'lng' => 1,
+                'id'          => 1,
+                'lat'         => 1,
+                'lng'         => 1,
+                'description' => 1,
+                'type'        => 1,
             ]);
         };
         $this->assertEquals(array_map($filter, $a), array_map($filter, $b), '');

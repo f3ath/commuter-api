@@ -105,7 +105,7 @@ exports.default = function ($, config) {
 
   this.getLocations = function (callback) {
     $.ajax({
-      url: '/api/v0/map/' + encodeURI(config.map_name) + '/current_locations',
+      url: '/api/v0/map/' + encodeURI(config.map_name) + '/locations',
       contentType: 'application/vnd.api+json',
       success: function success(response) {
         return callback(response.data ? response.data.attributes.locations : []);
