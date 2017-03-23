@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace F3\Commuter;
 
 use PHPUnit\Framework\TestCase;
@@ -96,7 +98,7 @@ class ApplicationTest extends TestCase
                 'lng' => 1,
             ]);
         };
-        $this->assertSame(array_map($filter, $a), array_map($filter, $b), '');
+        $this->assertEquals(array_map($filter, $a), array_map($filter, $b), '');
     }
 
     private function addLocation($location, string $map_id): void

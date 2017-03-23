@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace F3\Commuter\Web;
 
 use F3\Commuter\Application;
@@ -64,7 +66,7 @@ class WebApplicationTest extends TestCase
             );
         $response = $this->web_client->get('/api/v0/map/test_map/current_locations');
         self::assertStatusCode(200, $response);
-        $json = json_decode($response->getBody());
+        $json = json_decode((string) $response->getBody());
         $data = $json->data;
         self::assertEquals('current_locations', $data->type);
         self::assertNotEmpty($data->id);

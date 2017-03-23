@@ -7,8 +7,10 @@
     "test": "test"
   },
   "devDependencies": {
-    "babel-cli": "^6.24.0",
-    "babel-preset-env": "^1.2.1"
+    "babel-core": "^6.24.0",
+    "babel-loader": "^6.4.1",
+    "babel-preset-es2015": "^6.24.0",
+    "webpack": "^2.2.1"
   },
   "repository": {
     "type": "git",
@@ -16,6 +18,6 @@
   },
   "license": "MIT",
   "scripts": {
-    "build": "babel app/js/ -d public/s/"
+    "app-build": "babel app/js/ -d public/s/"
   }
 }

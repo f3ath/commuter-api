@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace F3\Commuter\Web\JsonApi;
 
 use Symfony\Component\HttpFoundation\JsonResponse;

@@ -26,7 +26,8 @@
     }
   },
   "scripts": {
-    "app_test": "vendor/bin/phpunit",
-    "app_install": "scripts/install.php"
+    "app-test": "vendor/bin/phpunit",
+    "app-install": "scripts/install.php",
+    "app-build": "./node_modules/.bin/webpack"
   }
 }
