@@ -4,7 +4,7 @@ import Location from "./location.js";
 (function (window) {
   "use strict";
 
-  window['initMap'] = function () {
+  window.initMap = function () {
     const SanFrancisco = {lat: 37.7749, lng: -122.4194};
     const map = new google.maps.Map(
       document.getElementById('map'),
@@ -28,21 +28,22 @@ import Location from "./location.js";
       };
     };
 
+    const location = new Location(window.navigator);
+
     async function sendMyLocation() {
-      let location = await (new Location(window.navigator)).getPosition();
-      api.sendLocation(location);
-    }
-    async function refreshMarkers() {
-      let locations = await api.getLocationsAsync();
-      markers.refresh(locations);
+      api.sendPosition(await location.getPosition());
     }
 
-    (async function() {
-      let location = await (new Location(window.navigator)).getPosition();
-      map.setCenter(location);
+    async function refreshMarkers() {
+      markers.refresh(await api.getLocationsAsync());
+    }
+
+    (async function(map) {
+      let position = await location.getPosition();
+      map.setCenter(position);
       map.setZoom(11);
-      api.sendLocation(location);
-    })();
+      api.sendPosition(position);
+    })(map);
 
     api.getLocations(markers.refresh);
     setInterval(

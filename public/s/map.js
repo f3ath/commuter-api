@@ -78,13 +78,15 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 exports.default = function ($, config) {
+  "use strict";
+
   var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
     var r = Math.random() * 16 | 0,
         v = c == 'x' ? r : r & 0x3 | 0x8;
     return v.toString(16);
   });
 
-  this.sendLocation = function (location) {
+  this.sendPosition = function (location) {
     $.post({
       url: '/api/v0/map/' + encodeURI(config.map_name) + '/locations',
       type: 'POST',
@@ -131,13 +133,17 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 exports.default = function (navigator) {
-  this.getPosition = function () {
+  "use strict";
+
+  async function getCurrentPosition() {
     return new Promise(function (resolve, reject) {
       if (navigator.geolocation) navigator.geolocation.getCurrentPosition(function (position) {
         return resolve({ lat: position.coords.latitude, lng: position.coords.longitude });
       });else reject('Oh shi... Geolocation is not supported');
     });
-  };
+  }
+
+  this.getPosition = getCurrentPosition;
 };
 
 /***/ }),
@@ -160,7 +166,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 (function (window) {
   "use strict";
 
-  window['initMap'] = function () {
+  window.initMap = function () {
     var SanFrancisco = { lat: 37.7749, lng: -122.4194 };
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 4,
@@ -185,21 +191,22 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
       };
     }();
 
+    var location = new _location2.default(window.navigator);
+
     async function sendMyLocation() {
-      var location = await new _location2.default(window.navigator).getPosition();
-      api.sendLocation(location);
-    }
-    async function refreshMarkers() {
-      var locations = await api.getLocationsAsync();
-      markers.refresh(locations);
+      api.sendPosition((await location.getPosition()));
     }
 
-    (async function () {
-      var location = await new _location2.default(window.navigator).getPosition();
-      map.setCenter(location);
+    async function refreshMarkers() {
+      markers.refresh((await api.getLocationsAsync()));
+    }
+
+    (async function (map) {
+      var position = await location.getPosition();
+      map.setCenter(position);
       map.setZoom(11);
-      api.sendLocation(location);
-    })();
+      api.sendPosition(position);
+    })(map);
 
     api.getLocations(markers.refresh);
     setInterval(sendMyLocation, 10000);
