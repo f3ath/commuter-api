@@ -54,7 +54,8 @@ class Application
     public function getLocations(string $map_id): array
     {
         $select = $this->pdo->prepare(
-            'SELECT location_id AS id, lat, lng, description, type FROM locations WHERE map_id = :map_id AND expires > :exp'
+            'SELECT location_id AS id, lat, lng, description, type 
+            FROM locations WHERE map_id = :map_id AND expires > :exp'
         );
         $select->execute([
             'map_id' => $map_id,

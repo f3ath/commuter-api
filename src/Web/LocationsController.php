@@ -5,6 +5,8 @@ namespace F3\Commuter\Web;
 
 use F3\Commuter\Application;
 use F3\Commuter\Web\JsonApi\Response;
+use JsonApiPhp\JsonApi\Document\Document;
+use JsonApiPhp\JsonApi\Document\Resource\ResourceObject;
 use Symfony\Component\HttpFoundation\Request;
 
 class LocationsController
@@ -35,14 +37,8 @@ class LocationsController
 
     public function getCurrentLocations(string $map_id)
     {
-        return new Response([
-            'data' => [
-                'type'       => 'current_locations',
-                'id'         => (string)time(),
-                'attributes' => [
-                    'locations' => $this->commuter_app->getLocations($map_id),
-                ],
-            ],
-        ]);
+        $locations = new ResourceObject('current_locations', (string)time());
+        $locations->setAttribute('locations', $this->commuter_app->getLocations($map_id));
+        return new Response(Document::fromData($locations));
     }
 }
