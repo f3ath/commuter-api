@@ -39,6 +39,6 @@ class LocationsController
     {
         $locations = new ResourceObject('current_locations', (string)time());
         $locations->setAttribute('locations', $this->commuter_app->getLocations($map_id));
-        return new Response(Document::fromData($locations));
+        return new Response(Document::fromResource($locations));
     }
 }
