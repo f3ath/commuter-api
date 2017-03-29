@@ -48,16 +48,16 @@
         },
         {
             "name": "json-api-php/json-api",
-            "version": "0.0.3",
+            "version": "0.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/json-api-php/json-api.git",
-                "reference": "1d7f73403b1071c31388b3ebcaef08ab070c4f84"
+                "reference": "1af1605f64853329032a0135b59e63011ac2d3f3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/json-api-php/json-api/zipball/1d7f73403b1071c31388b3ebcaef08ab070c4f84",
-                "reference": "1d7f73403b1071c31388b3ebcaef08ab070c4f84",
+                "url": "https://api.github.com/repos/json-api-php/json-api/zipball/1af1605f64853329032a0135b59e63011ac2d3f3",
+                "reference": "1af1605f64853329032a0135b59e63011ac2d3f3",
                 "shasum": ""
             },
             "require": {
@@ -84,7 +84,7 @@
                 }
             ],
             "description": "jsonapi.org",
-            "time": "2017-03-28T23:21:23+00:00"
+            "time": "2017-03-29T00:24:10+00:00"
         },
         {
             "name": "pimple/pimple",
