@@ -16,13 +16,26 @@ import Location from "./location.js";
 
     const api = new ApiClient(jQuery, window.config);
 
+    google.maps.event.addListener(map, "rightclick", function (event) {
+      const location = {
+        lat: event.latLng.lat(),
+        lng: event.latLng.lng(),
+        type: 'special',
+        expires: 60 * 60
+      };
+      api.sendPosition(location);
+    });
+
+
     const markers = new function () {
       let markers = [];
       this.refresh = function (locations) {
         markers.map(m => m.setMap(null));
         markers = [];
         locations.map(location => markers.push(
-          new google.maps.Marker({position: location})
+          new google.maps.Marker(
+            location.type === 'special' ? {position: location, icon : '/s/star.png'}: {position: location}
+            )
         ));
         markers.map(m => m.setMap(map));
       };
@@ -38,7 +51,7 @@ import Location from "./location.js";
       markers.refresh(await api.getLocationsAsync());
     }
 
-    (async function(map) {
+    (async function (map) {
       let position = await location.getPosition();
       map.setCenter(position);
       map.setZoom(11);
