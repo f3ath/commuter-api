@@ -25,7 +25,7 @@ class Application
               lat FLOAT, 
               lng FLOAT,
               expires INTEGER,
-              PRIMARY KEY (map_id, location_id)
+              PRIMARY KEY (map_id, location_id, type)
             )'
         );
         $this->pdo->exec('CREATE INDEX expires_map_idx ON locations (expires, map_id)');
