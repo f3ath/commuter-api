@@ -80,8 +80,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = function ($, config) {
   "use strict";
 
-  var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-    var r = Math.random() * 16 | 0,
+  const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+    let r = Math.random() * 16 | 0,
         v = c === 'x' ? r : r & 0x3 | 0x8;
     return v.toString(16);
   });
@@ -107,17 +107,13 @@ exports.default = function ($, config) {
     $.ajax({
       url: '/api/v0/map/' + encodeURI(config.map_name) + '/locations',
       contentType: 'application/vnd.api+json',
-      success: function success(response) {
-        return callback(response.data ? response.data.attributes.locations : []);
-      }
+      success: response => callback(response.data ? response.data.attributes.locations : [])
     });
   };
 
   this.getLocationsAsync = function () {
-    var getLocations = this.getLocations;
-    return new Promise(function (r) {
-      return getLocations(r);
-    });
+    const getLocations = this.getLocations;
+    return new Promise(r => getLocations(r));
   };
 };
 
@@ -136,10 +132,8 @@ exports.default = function (navigator) {
   "use strict";
 
   async function getCurrentPosition() {
-    return new Promise(function (resolve, reject) {
-      if (navigator.geolocation) navigator.geolocation.getCurrentPosition(function (position) {
-        return resolve({ lat: position.coords.latitude, lng: position.coords.longitude });
-      });else reject('Oh shi... Geolocation is not supported');
+    return new Promise((resolve, reject) => {
+      if (navigator.geolocation) navigator.geolocation.getCurrentPosition(position => resolve({ lat: position.coords.latitude, lng: position.coords.longitude }));else reject('Oh shi... Geolocation is not supported');
     });
   }
 
@@ -167,16 +161,16 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   "use strict";
 
   window.initMap = function () {
-    var SanFrancisco = { lat: 37.7749, lng: -122.4194 };
-    var map = new google.maps.Map(document.getElementById('map'), {
+    const SanFrancisco = { lat: 37.7749, lng: -122.4194 };
+    const map = new google.maps.Map(document.getElementById('map'), {
       zoom: 4,
       center: SanFrancisco
     });
 
-    var api = new _apiClient2.default(jQuery, window.config);
+    const api = new _apiClient2.default(jQuery, window.config);
 
     google.maps.event.addListener(map, "rightclick", function (event) {
-      var location = {
+      const location = {
         lat: event.latLng.lat(),
         lng: event.latLng.lng(),
         type: 'special',
@@ -185,23 +179,17 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
       api.sendPosition(location);
     });
 
-    var markers = new function () {
-      var markers = [];
+    const markers = new function () {
+      let markers = [];
       this.refresh = function (locations) {
-        markers.map(function (m) {
-          return m.setMap(null);
-        });
+        markers.map(m => m.setMap(null));
         markers = [];
-        locations.map(function (location) {
-          return markers.push(new google.maps.Marker(location.type === 'special' ? { position: location, icon: '/s/star.png' } : { position: location }));
-        });
-        markers.map(function (m) {
-          return m.setMap(map);
-        });
+        locations.map(location => markers.push(new google.maps.Marker(location.type === 'special' ? { position: location, icon: '/s/star.png' } : { position: location })));
+        markers.map(m => m.setMap(map));
       };
     }();
 
-    var location = new _location2.default(window.navigator);
+    const location = new _location2.default(window.navigator);
 
     async function sendMyLocation() {
       api.sendPosition((await location.getPosition()));
@@ -212,7 +200,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
     }
 
     (async function (map) {
-      var position = await location.getPosition();
+      let position = await location.getPosition();
       map.setCenter(position);
       map.setZoom(11);
       api.sendPosition(position);
