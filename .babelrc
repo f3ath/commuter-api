@@ -1,1 +1,11 @@
-{ "presets": [ "es2015" ] }
+{
+  "presets": [
+    ["target", {
+      "presets": ["es2015"],
+      "targets": [
+        {"name": "chrome", "version": 50},
+        {"name": "safari", "version": 9}
+      ]
+    }]
+  ]
+}
